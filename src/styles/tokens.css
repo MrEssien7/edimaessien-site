@@ -1,0 +1,15 @@
+/* Palette tokens. Ported verbatim from the approved prototype. */
+:root{
+  /* Palette from Sanzo Wada, A Dictionary of Color Combinations: No. 167 (Ecru, Pale King's Blue, Vandar Poel's Blue)
+     and No. 202 (Turquoise Green, Cobalt Green, Slate Color), with Dark Tyrian Blue for depth. Paper and line are Ecru tints. */
+  --paper:#F4F1EA; --paper-2:#E9E2D4; --ink:#12354E; --ink-2:#4F6470; --line:#D8D0C0;
+  --panel:#12354E; --panel-2:#183F5C; --panel-line:#2B5674; --on-panel:#F2F8FA; --on-panel-2:#A7D4E4;
+  --cobalt:#064F6E; --cobalt-2:#A7D4E4; --sky:#A7D4E4; --mint:#B5DECC; --sea:#96D1AA; --ecru:#C2AE93; --slate:#34454C;
+  --flag:#F9C1CE; --ok:#96D1AA;
+  --f-display:"Archivo", "Arial Narrow", Arial, sans-serif;
+  --f-body:"Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"Geist Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+  --r:22px; --r-s:14px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --gut:clamp(10px,1.4vw,18px);
+}

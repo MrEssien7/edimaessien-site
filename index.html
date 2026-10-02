@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Edima Essien Portfolio</title>
+<script type="module" src="/src/main.js"></script>
+</head>
+<body>
+<div class="cursor" id="cursor" aria-hidden="true"><span>View</span></div>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="nav-bar">
+    <a class="logo" href="#top"><i aria-hidden="true">E</i>Edima Essien</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn chip-res" href="#experience"><span>Résumé</span></a>
+      <a class="btn light" href="#contact"><span>Book a call</span><span class="arr">→</span></a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><b></b><b></b></button>
+  </div>
+</nav>
+<div class="sheet" id="sheet" aria-hidden="true">
+  <button id="closeSheet">Close</button>
+  <a href="#work">Work</a><a href="#skills">Skills</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+</div>
+
+<main class="page" id="top">
+  <!-- HERO -->
+  <header class="hero" id="hero">
+    <canvas id="heroGL" aria-hidden="true"></canvas>
+    <div class="hero-fallback" aria-hidden="true">E</div>
+    <div class="hero-copy">
+      <span class="label">( Hi, I'm Edima ) <span class="spin">✳</span></span>
+      <h1 class="display"><span class="ln"><span>Turning data</span></span><span class="ln"><span>into decisions</span></span></h1>
+      <p>Business and computer science student in Windsor, Ontario, building tools that make messy systems make sense.</p>
+      <div class="hero-ctas">
+        <a class="btn light" href="#work"><span>View projects</span><span class="arr">→</span></a>
+        <a class="btn dark" href="#contact"><span>Book a call</span><span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="hero-foot mono">
+      <span>Scroll for more ✳</span>
+      <span class="live hide-s"><i></i>Open to summer 2027 co-op</span>
+    </div>
+  </header>
+
+  <!-- WORK -->
+  <section class="sec" id="work" aria-labelledby="work-h">
+    <span class="label">( Moving forward )</span>
+    <div class="sec-head">
+      <h2 class="big" id="work-h">Featured work <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v16M5 12l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.6"/></svg></h2>
+      <a class="link-all" href="https://github.com/MrEssien7">All on GitHub <span>→</span></a>
+    </div>
+
+    <div class="work-grid">
+      <a class="card wide" href="https://github.com/MrEssien7/drip" data-cursor>
+        <div class="media m-drip">
+          <div class="island" id="island" data-s="work">
+            <div class="head"><span class="drop"></span><span class="hd"><b>weather-cli</b><span id="islSub">Read · forecast.ts</span></span><span class="chip" id="islChip">Working</span></div>
+            <div class="body">
+              <div class="cmd">$ npm test -- --run forecast</div>
+              <div class="timer"><i id="islTimer"></i></div>
+              <div class="acts"><span>Deny</span><span class="allow" id="islAllow">Allow</span></div>
+            </div>
+          </div>
+          <div class="desk"><pre><b>export function</b> parseHourly(raw: ApiHour[]) {
+  <b>return</b> raw.map(h =&gt; ({
+    time: <b>new</b> Date(h.ts * 1000),
+    tempC: round1(h.temp),
+    rain: h.pop,
+  }));
+}</pre></div>
+        </div>
+        <div class="top"><span>01</span><span>2026</span></div>
+        <div class="meta">
+          <div><h3>Drip</h3><div class="pills"><span class="pill">Windows App</span><span class="pill">Rust + TypeScript</span><span class="pill">Claude Code</span></div></div>
+          <span class="yr">Approve AI commands from the top of your screen</span>
+        </div>
+        <div class="bar"><i id="dripBar"></i></div>
+      </a>
+
+      <a class="card" href="https://mressien7.github.io/windsor-essex-water-quality/" data-cursor>
+        <div class="media m-water"><svg id="waterSvg" aria-hidden="true"></svg></div>
+        <div class="top"><span>02</span><span>2026</span></div>
+        <div class="meta">
+          <div><h3>Windsor–Essex Water Quality</h3><div class="pills"><span class="pill">React</span><span class="pill">Open Data</span></div></div>
+          <span class="yr">20 sites</span>
+        </div>
+      </a>
+
+      <a class="card" href="#about" data-cursor>
+        <div class="media m-sys"><canvas id="sysCv" aria-hidden="true"></canvas></div>
+        <div class="top"><span>03</span><span>May–Aug 2026</span></div>
+        <div class="meta">
+          <div><h3>Data Source Assessment</h3><div class="pills"><span class="pill">Co-op</span><span class="pill">Data Quality</span></div></div>
+          <span class="yr">7 systems</span>
+        </div>
+      </a>
+
+      <a class="card short" href="#work" data-cursor>
+        <div class="media m-cpu">
+          <div class="gantt" id="gantt"></div>
+        </div>
+        <div class="top"><span>04 · Round Robin, q=2</span><span>In progress</span></div>
+        <div class="meta">
+          <div><h3>CPU Scheduling Simulator</h3><div class="pills"><span class="pill">Python</span><span class="pill">Operating Systems</span></div></div>
+          <span class="yr">5 algorithms</span>
+        </div>
+      </a>
+
+      <a class="tile-cta" href="https://github.com/MrEssien7">
+        <span class="label">( More )</span>
+        <span class="display">Everything<br>on GitHub →</span>
+        <span class="label">github.com/MrEssien7</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="dark-panel" id="skills" aria-labelledby="skills-h">
+    <span class="label">( Skills &amp; toolkit ) ↓</span>
+    <h2 class="title" id="skills-h">Data, systems and software</h2>
+    <p class="sub">Three things I do, usually in the same project: measure what's there, map how it connects, and build the tool that makes it usable.</p>
+    <div class="skills">
+      <article class="skill">
+        <div class="gl"><canvas data-scene="bars" aria-hidden="true"></canvas></div>
+        <div class="txt"><h3>Data analysis</h3><p>Profiling, scoring and cleaning real institutional data until it answers a question.</p><div class="pills"><span class="pill">Python</span><span class="pill">SQL</span><span class="pill">Excel</span><span class="pill">Power Query</span></div></div>
+      </article>
+      <article class="skill">
+        <div class="gl"><canvas data-scene="net" aria-hidden="true"></canvas></div>
+        <div class="txt"><h3>Systems mapping</h3><p>Data dictionaries and process maps that show where information lives and where it breaks.</p><div class="pills"><span class="pill">Salesforce</span><span class="pill">Raiser's Edge NXT</span><span class="pill">draw.io</span></div></div>
+      </article>
+      <article class="skill">
+        <div class="gl"><canvas data-scene="stack" aria-hidden="true"></canvas></div>
+        <div class="txt"><h3>Software</h3><p>Specs, prototypes and shipped apps, built with AI coding tools and tested at every step.</p><div class="pills"><span class="pill">React</span><span class="pill">Claude Code</span><span class="pill">Git</span></div></div>
+      </article>
+    </div>
+    <div class="marquee" aria-label="Tools I use">
+      <div class="track-m" id="mq1"></div>
+      <div class="track-m rev" id="mq2"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sec" id="about" aria-labelledby="about-h">
+    <span class="label">( About ) ↓</span>
+    <div class="sec-head"><h2 class="big" id="about-h">The person behind it</h2></div>
+    <div class="bento">
+      <div class="b stat"><strong><span data-count="114">114</span><em>+</em></strong><span>Fields documented in one data dictionary</span></div>
+      <div class="b stat"><strong><span data-count="7">7</span></strong><span>Institutional systems assessed</span></div>
+      <div class="b globe"><div class="gtop"><b>Based in Windsor, Ontario</b><span class="mono"><i></i>Open to summer 2027 co-op</span></div><canvas id="globe" aria-hidden="true"></canvas></div>
+      <div class="b stat"><strong><em>$</em><span data-count="6">6</span>K<em>+</em></strong><span>Saved by one data quality finding</span></div>
+      <div class="b stat"><strong><span data-count="2">2</span></strong><span>Apps shipped to GitHub</span></div>
+      <div class="b portrait" role="img" aria-label="Portrait placeholder"><div class="ph"><b>EE</b></div><div class="cap mono"><span>Edima Essien</span><span>Portrait soon</span></div></div>
+      <div class="b bio">
+        <div>
+          <span class="label">( In short )</span>
+          <h3 style="margin-top:12px">Third-year BComm Honours and Computer Science co-op student at the University of Windsor.</h3>
+        </div>
+        <p>I work as a Data &amp; Reporting Analyst Support Student in the Office of the AVP External, after a 16-week co-op there assessing how data moves through seven systems. Most organizational problems turn out to be data problems, so I study both: the business that needs an answer, and the software that can give one.</p>
+        <dl class="now-list">
+          <div><dt>Building</dt><dd>Drip and this site</dd></div>
+          <div><dt>Leading</dt><dd>VP Special Projects, Net Impact Odette</dd></div>
+          <div><dt>Reading</dt><dd>The 21 Irrefutable Laws of Leadership</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="sec" id="experience" aria-labelledby="exp-h" style="padding-top:0">
+    <span class="label">( Experience ) ↓</span>
+    <div class="sec-head"><h2 class="big" id="exp-h">Where I've worked</h2><a class="link-all" href="#contact">Résumé PDF soon</a></div>
+    <div class="ledger">
+      <div class="row"><b>Data &amp; Reporting Analyst Support Student</b><span>Office of the AVP External, UWindsor</span><span class="yr">2026–27</span><span class="ar">→</span></div>
+      <div class="row"><b>Data &amp; Reporting Analyst, Co-op</b><span>Office of the AVP External, UWindsor</span><span class="yr">May–Aug 2026</span><span class="ar">→</span></div>
+      <div class="row"><b>VP Special Projects</b><span>Net Impact Odette</span><span class="yr">2026–27</span><span class="ar">→</span></div>
+      <div class="row"><b>Field Data Volunteer</b><span>RAEON, Great Lakes Institute</span><span class="yr">Jun 2026</span><span class="ar">→</span></div>
+      <div class="row"><b>Store Associate</b><span>Dollarama, Windsor</span><span class="yr">2025</span><span class="ar">→</span></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact" aria-labelledby="cta-h">
+    <span class="label">( Seriously )</span>
+    <h2 class="display" id="cta-h">Let's<br>talk.</h2>
+    <div class="sign">
+      <p class="note">Thanks for scrolling this far. Whatever you're building, I'd like to hear about it.</p>
+      <a class="sig" href="#top" id="sig" aria-label="Edima's signature. Back to the top">
+        <svg viewBox="0 0 560 220" aria-hidden="true">
+          <g class="ink">
+            <g class="main" id="sigMain">
+              <path d="M150 52 C142 32 112 24 92 31 C68 40 66 70 90 84 C102 91 122 92 130 82 C135 75 124 71 116 79 C109 87 98 91 89 96 C62 113 56 152 86 167 C116 181 158 167 178 140"/>
+              <path d="M178 140 C184 130 188 122 194 128 C202 136 196 150 206 146 C216 140 220 76 232 62 C239 54 244 62 238 82 C233 102 234 130 238 146 C240 156 250 150 256 132 C260 124 262 138 268 140 C274 142 278 124 284 124 C290 124 288 142 294 142 C300 142 302 122 310 122 C318 122 314 144 322 142 C330 140 334 120 344 124 C356 128 350 146 340 144 C330 142 338 124 352 128 C360 130 360 146 372 140 C400 126 438 118 470 104"/>
+              <path class="u" d="M104 190 C210 170 360 178 500 150"/>
+            </g>
+            <g class="nib" transform="translate(1.3 1.1)">
+              <path d="M150 52 C142 32 112 24 92 31 C68 40 66 70 90 84 C102 91 122 92 130 82 C135 75 124 71 116 79 C109 87 98 91 89 96 C62 113 56 152 86 167 C116 181 158 167 178 140"/>
+              <path d="M178 140 C184 130 188 122 194 128 C202 136 196 150 206 146 C216 140 220 76 232 62 C239 54 244 62 238 82 C233 102 234 130 238 146 C240 156 250 150 256 132 C260 124 262 138 268 140 C274 142 278 124 284 124 C290 124 288 142 294 142 C300 142 302 122 310 122 C318 122 314 144 322 142 C330 140 334 120 344 124 C356 128 350 146 340 144 C330 142 338 124 352 128 C360 130 360 146 372 140 C400 126 438 118 470 104"/>
+            </g>
+            <path class="dot" d="M258 106 L266 101"/>
+          </g>
+        </svg>
+        <span class="mono sig-hint">Back to the start ↑</span>
+      </a>
+    </div>
+    <div class="cta-row">
+      <a class="btn light" href="#"><span>Book 30 minutes</span><span class="arr">→</span></a>
+      <a class="btn dark" href="https://www.linkedin.com/in/edima-essien-27a938329"><span>LinkedIn</span><span class="arr">→</span></a>
+      <a class="mail" href="mailto:essienedima74@gmail.com">essienedima74@gmail.com</a>
+    </div>
+    <div class="foot">
+      <div><h4>Edima Essien</h4><span>Windsor, Ontario<br>edimaessien.dev</span></div>
+      <div><h4>Index</h4><ul><li><a href="#work">Work</a></li><li><a href="#skills">Skills</a></li><li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li></ul></div>
+      <div><h4>Socials</h4><ul><li><a href="https://www.linkedin.com/in/edima-essien-27a938329">LinkedIn</a></li><li><a href="https://github.com/MrEssien7">GitHub</a></li></ul></div>
+      <div><h4>Projects</h4><ul><li><a href="https://github.com/MrEssien7/drip">Drip</a></li><li><a href="https://mressien7.github.io/windsor-essex-water-quality/">Water Quality</a></li></ul></div>
+    </div>
+  </section>
+  <div class="legal mono"><span>© 2026 Edima Essien</span><span>Colours from Sanzo Wada's Dictionary of Color Combinations, No. 167 &amp; 202</span></div>
+</main>
+</body>
+</html>
