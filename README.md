@@ -9,6 +9,13 @@ npm run build    # production build to dist/
 npm run preview  # serve dist/ locally
 ```
 
-Deployed on Netlify: every push to `main` goes live, and every other branch gets a preview at `<branch>--edimaessien.netlify.app`.
+Live at https://edimaessien.dev.
+
+## Hosting
+
+- **Netlify** builds from `netlify.toml`. Every push to `main` goes live, and every other branch gets a preview at `<branch>--edimaessien.netlify.app`.
+- **Domain:** registered at Porkbun, with DNS on Netlify (nameservers `dns1`–`dns4.p06.nsone.net`). `edimaessien.dev` is the primary domain, and `www` and `http://` redirect to it.
+- **HTTPS:** a Let's Encrypt certificate that Netlify provisions and renews automatically. `.dev` is HSTS-preloaded, so HTTPS is required.
+
 
 Colours from Sanzo Wada's *A Dictionary of Color Combinations*, No. 167 and 202.
