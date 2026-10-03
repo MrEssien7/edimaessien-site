@@ -270,3 +270,10 @@ h2.title{font-family:var(--f-body);font-weight:500;font-size:clamp(2rem,4.4vw,3.
 
 /* Lenis owns smooth scrolling when it is active */
 html.lenis{scroll-behavior:auto}
+
+/* Nav: five links. Shorten "In the field" to "Field" where space is tight (accessible name stays "In the field"). */
+.nl-short{display:none}
+@media (max-width:1180px){.nl-long{display:none}.nl-short{display:inline}}
+/* Mobile menu: when closed, keep it out of the tab order and stop its links spilling onto short screens */
+.sheet{overflow-y:auto;visibility:hidden;transition:transform .6s var(--ease),visibility 0s linear .6s}
+.sheet.open{visibility:visible;transition:transform .6s var(--ease)}
