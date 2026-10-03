@@ -13,7 +13,7 @@ a{color:inherit}
 .sheet-r{width:8.5in;min-height:11in;margin:0 auto 40px;background:#fff;padding:.55in .6in;border-radius:6px;box-shadow:0 20px 50px -30px rgba(18,53,78,.45)}
 .r-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:6px 20px;padding-bottom:12px;border-bottom:1.5px solid var(--ink)}
 .r-name{grid-column:1/-1;margin:0;font-family:var(--f-display);font-stretch:78%;font-weight:700;text-transform:uppercase;font-size:34pt;line-height:.86;letter-spacing:-.005em}
-.r-name i{font-style:normal;font-family:Georgia,'Times New Roman',serif;font-weight:700;text-transform:none;color:var(--cobalt);margin-right:.08em}
+.r-e{display:inline-block;height:.73em;width:auto;vertical-align:baseline;margin-right:.07em;color:var(--cobalt)}
 .r-headline{margin:0;font-size:10.5pt;color:var(--ink-2)}
 .r-contact{grid-column:1/-1;list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:2px 14px;font-family:var(--f-mono);font-size:7.6pt;letter-spacing:.02em}
 .r-contact a{text-decoration:none}

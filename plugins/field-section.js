@@ -2,6 +2,7 @@
 // content/field.json and content/media-manifest.json, so the content is plain HTML with no JS needed.
 import fs from 'node:fs';
 import path from 'node:path';
+import {eSvg} from './e-svg.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const CONTENT = path.join(ROOT, 'content', 'field.json');
@@ -136,7 +137,7 @@ export function renderResume(){
   return `<nav class="r-bar" aria-label="Résumé"><a class="r-back" href="/">← edimaessien.dev</a><a class="r-pdf" href="/resume.pdf" download="Edima-Essien-Resume.pdf">Download PDF ↓</a></nav>
 <main class="sheet-r">
   <header class="r-head">
-    <h1 class="r-name"><i aria-hidden="true">E</i>${esc(r.name)}</h1>
+    <h1 class="r-name">${eSvg('r-e')}${esc(r.name)}</h1>
     <p class="r-headline">${esc(r.headline)}</p>
     <ul class="r-contact">${r.contact.map(c => `<li>${link(c.label, c.href)}</li>`).join('')}</ul>
   </header>
