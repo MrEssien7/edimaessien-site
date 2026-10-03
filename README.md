@@ -18,4 +18,13 @@ Live at https://edimaessien.dev.
 - **HTTPS:** a Let's Encrypt certificate that Netlify provisions and renews automatically. `.dev` is HSTS-preloaded, so HTTPS is required.
 
 
+## Old sites (retired October 2026)
+
+- **edima-essien.netlify.app** (separate Netlify site, drag-and-drop deploys, no repo) now serves only a
+  `_redirects` file: `/resume.html` → `/resume/`, `/portfolio.html` → `/#work`, `/resume.pdf` → `/resume.pdf`,
+  everything else → `https://edimaessien.dev/` (all 301). The bundle lives in `../edima-essien-redirect`.
+  To roll back, publish the 2026-07-09 13:03 deploy (`6a4f9c33…`) from that site's Deploys page.
+- **mressien7.github.io/e**: GitHub Pages turned off for the `e` repo (its only build never published).
+  The repo is untouched and its website field points to edimaessien.dev.
+
 Colours from Sanzo Wada's *A Dictionary of Color Combinations*, No. 167 and 202.
