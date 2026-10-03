@@ -1,11 +1,12 @@
 import * as T from 'three';
+import {GL_ATTRS} from './env.js';
 
 // The prototype was tuned on three r128, which did no colour management. Turning it off keeps
 // the palette hex values and the pearl material looking identical on current three.js.
 T.ColorManagement.enabled = false;
 
 /* ---------- Shared pearl material: calm studio reflections from the palette ---------- */
-function studioEnv(){
+export function studioEnv(){
   // six canvas faces: +x,-x,+y,-y,+z,-z. Sky gradient from the palette with soft "windows" of light.
   const S = 256;
   const face = (i) => {
@@ -30,18 +31,31 @@ function studioEnv(){
   return tex;
 }
 
-function glOK(){ try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch(e){ return false; } }
-export const GL = glOK();
-if (!GL) document.documentElement.classList.add('no-gl');
-
-let mat = null;
-// Created lazily so the cube map is only built when a scene actually needs it.
-export function pearl(){
-  return mat ??= new T.MeshPhysicalMaterial({color: new T.Color('#eef8fb'), metalness: .92, roughness: .04, clearcoat: 1, clearcoatRoughness: 0, envMap: studioEnv()});
+// The studio cube, pre-blurred for every roughness level (three.js PMREM), baked by scripts/bake-env.mjs.
+// Loading it is decoded off the main thread; computing it here took most of the 3D start-up time.
+async function bakedEnv(){
+  const res = await fetch('/media/env/studio-pmrem.webp');
+  if (!res.ok) throw new Error(res.status);
+  // No colour conversion: the pixels are linear reflection data, uploaded exactly as baked.
+  const bmp = await createImageBitmap(await res.blob(), {colorSpaceConversion: 'none', premultiplyAlpha: 'none'});
+  const tex = new T.Texture(bmp);
+  tex.mapping = T.CubeUVReflectionMapping;
+  tex.flipY = false; tex.generateMipmaps = false;
+  tex.minFilter = tex.magFilter = T.LinearFilter;
+  tex.needsUpdate = true;
+  return tex;
 }
 
-export function makeRenderer(canvas){
-  const r = new T.WebGLRenderer({canvas, antialias: true, alpha: true, powerPreference: 'high-performance'});
+let mat = null;
+// Shared pearl material, created once. Falls back to building the reflections live if the baked map can't load.
+export function pearl(){
+  return mat ??= bakedEnv().catch(() => studioEnv()).then(envMap =>
+    new T.MeshPhysicalMaterial({color: new T.Color('#eef8fb'), metalness: .92, roughness: .04, clearcoat: 1, clearcoatRoughness: 0, envMap}));
+}
+
+// context: an existing WebGL2 context for this canvas (from gpuContext), so no second one is created.
+export function makeRenderer(canvas, context){
+  const r = new T.WebGLRenderer({canvas, context, ...GL_ATTRS});
   // Lower pixel ratio on phones
   r.setPixelRatio(Math.min(devicePixelRatio || 1, innerWidth < 700 ? 1.5 : 2));
   r.outputColorSpace = T.SRGBColorSpace; r.toneMapping = T.ACESFilmicToneMapping; r.toneMappingExposure = 1.05;

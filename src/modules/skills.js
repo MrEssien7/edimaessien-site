@@ -3,8 +3,8 @@ import {reduce, visible} from '../lib/env.js';
 import {pearl, makeRenderer, fit} from '../lib/gl.js';
 
 /* ---------- Skills mini scenes ---------- */
-function scene(canvas, kind){
-  const MAT = pearl();
+async function scene(canvas, kind){
+  const MAT = await pearl();
   const r = makeRenderer(canvas), sc = new T.Scene(), cam = new T.PerspectiveCamera(30, 1, .1, 100);
   cam.position.set(0, 2.2, 11); cam.lookAt(0, 0, 0);
   const root = new T.Group(); sc.add(root);
@@ -37,6 +37,7 @@ function scene(canvas, kind){
   const hover = {v: 0};
   const card = canvas.closest('.skill');
   card.addEventListener('pointerenter', () => hover.v = 1); card.addEventListener('pointerleave', () => hover.v = 0);
+  await r.compileAsync(sc, cam);
   let spd = 0, run = false, t = 0, last = performance.now();
   const resize = () => { fit(r, cam, canvas); if (reduce) run = true; }; resize(); addEventListener('resize', resize);
   visible(canvas, v => { run = v; last = performance.now(); });
@@ -49,10 +50,17 @@ function scene(canvas, kind){
     if (!reduce){ t += dt * spd * 1.4; root.rotation.y += dt * spd * .5; }
     anim.forEach(f => f(reduce ? 1 : t));
     r.render(sc, cam);
+    canvas.parentElement.classList.add('live');
     if (reduce) run = false;
   })(last);
 }
 
+// Each scene (its own WebGL context, shaders and reflection map) is only built when its card nears the viewport.
 export function initSkills(){
-  document.querySelectorAll('[data-scene]').forEach(c => scene(c, c.dataset.scene));
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    io.unobserve(e.target);
+    scene(e.target, e.target.dataset.scene);
+  }), {rootMargin: '400px 0px'});
+  document.querySelectorAll('[data-scene]').forEach(c => io.observe(c));
 }

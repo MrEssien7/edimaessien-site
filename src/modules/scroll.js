@@ -26,7 +26,7 @@ export function initChoreography(){
     gsap.from(c, {y: 60, duration: 1.1, ease: 'power3.out', scrollTrigger: {trigger: c, start: 'top 95%'}});
     const m = c.querySelector('.media'); if (m) gsap.fromTo(m, {yPercent: -4}, {yPercent: 4, ease: 'none', scrollTrigger: {trigger: c, start: 'top bottom', end: 'bottom top', scrub: true}});
   });
-  gsap.utils.toArray('.sec-head .big, .dark-panel h2.title').forEach(el => gsap.from(el, {y: 40, opacity: .2, duration: 1, ease: 'power3.out', scrollTrigger: {trigger: el, start: 'top 92%'}}));
+  gsap.utils.toArray('.sec-head .big, .dark-panel h2.title').forEach(el => gsap.from(el, {y: 40, duration: 1, ease: 'power3.out', scrollTrigger: {trigger: el, start: 'top 92%'}}));
   gsap.utils.toArray('.skill, .b, .row').forEach((el, i) => gsap.from(el, {y: 40, duration: .9, ease: 'power3.out', delay: (i % 4) * .05, scrollTrigger: {trigger: el, start: 'top 96%'}}));
   document.querySelectorAll('[data-count]').forEach(el => {
     const end = +el.dataset.count, o = {v: 0};

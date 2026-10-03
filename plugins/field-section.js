@@ -146,12 +146,15 @@ export function renderResume(){
 </main>`;
 }
 
+// <!-- @e:class --> becomes the serif E as inline SVG; <!-- @e-outline:class --> the outlined version.
+const renderE = html => html.replace(/<!-- @e(-outline)?:([\w-]+) -->/g, (_, o, cls) => eSvg(cls, {outline: !!o}));
+
 export default function fieldSection(){
   return {
     name: 'field-section',
     transformIndexHtml: {
       order: 'pre',
-      handler: html => html.includes('<!-- @resume -->') ? html.replace('<!-- @resume -->', renderResume()) : renderDripDemo(html).replace('<!-- @field -->', renderField()).replace('<!-- @portrait -->', renderPortrait()),
+      handler: html => renderE(html.includes('<!-- @resume -->') ? html.replace('<!-- @resume -->', renderResume()) : renderDripDemo(html)).replace('<!-- @field -->', renderField()).replace('<!-- @portrait -->', renderPortrait()),
     },
     configureServer(server){
       // Editing the content file or regenerating media reloads the dev page.
