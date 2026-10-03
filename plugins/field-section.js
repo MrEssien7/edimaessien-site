@@ -103,12 +103,33 @@ export function renderPortrait(){
   return picture(m, {alt: 'Portrait of Edima Essien', sizes: '(max-width:980px) 100vw, 33vw', cls: 'ph-img'});
 }
 
+// Drip demo slot. Only when content/media-manifest.json has "drip/demo" (a real screen recording in
+// media-src/drip/) does the Drip card get a "Watch the demo" button and player; otherwise it is untouched.
+// The button can't live inside the card's <a>, so the card is wrapped in a .card-slot that takes its grid span.
+const DEMO_LABEL = 'Drip demo, screen recording';
+const DEMO_DIALOG = m => `<dialog class="demo-dlg" id="demoDialog" aria-label="${esc(DEMO_LABEL)}" data-lenis-prevent>
+  <button type="button" class="fd-close" id="demoClose"><span>Close</span> <span aria-hidden="true">✕</span></button>
+  <video controls playsinline preload="none" poster="/${m.base}-poster.jpg" width="${m.width}" height="${m.height}" aria-label="${esc(DEMO_LABEL)}"><source src="/${m.base}.webm" type="video/webm"><source src="/${m.base}.mp4" type="video/mp4"></video>
+</dialog>
+`;
+export function renderDripDemo(html){
+  const m = read(MANIFEST)['drip/demo'];
+  const re = /<!-- @drip-card -->\r?\n([\s\S]*?)[ \t]*<!-- \/@drip-card -->\r?\n?/;
+  if (!m) return html.replace(re, '$1');
+  // The player goes next to the other dialogs, outside the work grid, so it doesn't take a grid cell.
+  html = html.replace(/<\/main>\r?\n/, match => match + DEMO_DIALOG(m));
+  return html.replace(re, (_, card) => `<div class="card-slot wide">
+${card}      <button type="button" class="btn light demo-open" id="demoOpen" aria-haspopup="dialog"><span>Watch the demo</span><span class="arr" aria-hidden="true">▶</span></button>
+      </div>
+`);
+}
+
 export default function fieldSection(){
   return {
     name: 'field-section',
     transformIndexHtml: {
       order: 'pre',
-      handler: html => html.replace('<!-- @field -->', renderField()).replace('<!-- @portrait -->', renderPortrait()),
+      handler: html => renderDripDemo(html).replace('<!-- @field -->', renderField()).replace('<!-- @portrait -->', renderPortrait()),
     },
     configureServer(server){
       // Editing the content file or regenerating media reloads the dev page.

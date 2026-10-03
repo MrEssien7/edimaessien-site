@@ -60,3 +60,13 @@
   .fd-track img,.fd-track video{max-height:min(62dvh,560px)}
   .fd-text{padding:22px 18px 32px;overflow:visible}
 }
+
+/* Drip demo slot (only rendered once a real recording exists) */
+.card-slot{position:relative;grid-column:span 2;display:grid}
+.card-slot > .card.wide{grid-column:auto}
+.demo-open{position:absolute;z-index:5;top:52px;right:22px;height:38px;padding:0 14px}
+.demo-dlg{border:0;padding:0;margin:auto;width:min(1180px,calc(100vw - 2*var(--gut)));max-width:none;max-height:calc(100dvh - 2*var(--gut));border-radius:var(--r);background:#05070a;overflow:hidden}
+.demo-dlg::backdrop{background:rgba(10,34,51,.8);backdrop-filter:blur(6px)}
+.demo-dlg video{display:block;width:100%;height:auto;max-height:calc(100dvh - 2*var(--gut));background:#05070a}
+/* On phones the button sits under the card. It stays position:relative so the .btn hover layer stays inside it. */
+@media (max-width:680px){.card-slot{grid-column:auto;gap:10px}.card-slot .demo-open.btn{position:relative;top:auto;right:auto;justify-self:start;background:var(--ink);color:var(--on-panel)}.card-slot .demo-open.btn::before{background:var(--cobalt)}}

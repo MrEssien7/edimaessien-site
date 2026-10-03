@@ -44,16 +44,28 @@ async function photo(src, outDir, {aspect} = {}){
   return {base: rel(path.join(outDir, name)), widths, width, height};
 }
 
-function video(src, outDir){
+// Loops (field moments) are silent and capped at 832px tall. The Drip demo keeps its sound, since it plays
+// with controls, and is capped at 1280px wide (screen recordings are landscape).
+async function video(src, outDir, {audio = false, scale = 'scale=-2:min(ih\\,832)', crf = [27, 38]} = {}){
   fs.mkdirSync(outDir, {recursive: true});
   const name = stem(path.basename(src)), o = path.join(outDir, name);
-  const vf = 'fps=30,scale=-2:min(ih\\,832)';
+  const vf = `fps=30,${scale}`;
   const run = args => execFileSync(FFMPEG, ['-v', 'error', '-y', '-i', src, ...args], {stdio: 'inherit'});
-  // -an drops audio; -map_metadata -1 drops container metadata (location, device, dates).
-  run(['-an', '-map_metadata', '-1', '-vf', vf, '-c:v', 'libx264', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-crf', '27', '-preset', 'slow', '-movflags', '+faststart', `${o}.mp4`]);
-  run(['-an', '-map_metadata', '-1', '-vf', vf, '-c:v', 'libvpx-vp9', '-crf', '38', '-b:v', '0', '-row-mt', '1', `${o}.webm`]);
-  run(['-an', '-map_metadata', '-1', '-ss', '0.5', '-frames:v', '1', '-vf', 'scale=-2:min(ih\\,832)', `${o}-poster.jpg`]);
-  return o;
+  // -map_metadata -1 drops container metadata (location, device, dates); -an drops audio for silent loops.
+  const a = codec => audio ? ['-c:a', codec, '-b:a', codec === 'aac' ? '96k' : '64k'] : ['-an'];
+  run([...a('aac'), '-map_metadata', '-1', '-vf', vf, '-c:v', 'libx264', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-crf', String(crf[0]), '-preset', 'slow', '-movflags', '+faststart', `${o}.mp4`]);
+  run([...a('libopus'), '-map_metadata', '-1', '-vf', vf, '-c:v', 'libvpx-vp9', '-crf', String(crf[1]), '-b:v', '0', '-row-mt', '1', `${o}.webm`]);
+  run(['-an', '-map_metadata', '-1', '-ss', '0.5', '-frames:v', '1', '-vf', scale, `${o}-poster.jpg`]);
+  // Re-save the poster through sharp so it carries no metadata either. Read into memory first:
+  // on Windows sharp keeps the source file open, which blocks overwriting it in place.
+  const raw = fs.readFileSync(`${o}-poster.jpg`);
+  const {width, height} = await sharp(raw).metadata();
+  fs.writeFileSync(`${o}-poster.jpg`, await sharp(raw).jpeg({quality: 78, mozjpeg: true}).toBuffer());
+  for (const ext of ['mp4', 'webm']){
+    const mb = fs.statSync(`${o}.${ext}`).size / 1048576;
+    if (mb > 5) console.warn(`! ${rel(o)}.${ext} is ${mb.toFixed(1)} MB, over the 5 MB budget. Trim the source or raise crf.`);
+  }
+  return {base: rel(o), video: true, width, height};
 }
 
 const manifest = {};
@@ -67,17 +79,15 @@ for (const slug of fs.existsSync(fieldSrc) ? fs.readdirSync(fieldSrc) : []){
   for (const f of fs.readdirSync(dir).sort()){
     const src = path.join(dir, f), key = `field/${slug}/${f}`;
     if (IMAGE.test(f)) manifest[key] = await photo(src, outDir);
-    else if (VIDEO.test(f)){
-      const o = video(src, outDir);
-      // Re-save the poster through sharp so it carries no metadata either. Read into memory first:
-      // on Windows sharp keeps the source file open, which blocks overwriting it in place.
-      const raw = fs.readFileSync(`${o}-poster.jpg`);
-      const {width, height} = await sharp(raw).metadata();
-      fs.writeFileSync(`${o}-poster.jpg`, await sharp(raw).jpeg({quality: 78, mozjpeg: true}).toBuffer());
-      manifest[key] = {base: rel(o), video: true, width, height};
-    }
+    else if (VIDEO.test(f)) manifest[key] = await video(src, outDir);
   }
 }
+
+// Drip demo slot: drop a real screen recording at media-src/drip/demo.mp4 (or .mov/.webm) and the
+// "Watch the demo" button appears on the Drip card. With no file, the card stays exactly as it is.
+const dripDir = path.join(SRC, 'drip');
+const demo = fs.existsSync(dripDir) && fs.readdirSync(dripDir).find(f => /^demo\./.test(f) && VIDEO.test(f));
+if (demo) manifest['drip/demo'] = await video(path.join(dripDir, demo), path.join(OUT, 'drip'), {audio: true, scale: "scale='min(1280,iw)':-2", crf: [28, 40]});
 
 fs.writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '\n');
 for (const [k, v] of Object.entries(manifest)){

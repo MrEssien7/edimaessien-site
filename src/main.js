@@ -17,6 +17,7 @@ import {initMarquee} from './modules/marquee.js';
 import {initGlobe} from './modules/globe.js';
 import {initSignature} from './modules/signature.js';
 import {initField} from './modules/field.js';
+import {initDemo} from './modules/demo.js';
 
 const lenis = initSmoothScroll();
 initNav();
@@ -30,4 +31,5 @@ initMarquee();
 initGlobe();
 initSignature();
 initField(lenis);
+initDemo(lenis);
 initChoreography();
