@@ -22,7 +22,7 @@ export function initChoreography(){
   gsap.from('.hero h1 .ln > span', {yPercent: 110, duration: 1, ease: 'power4.out', stagger: .1, delay: .1});
   gsap.from('.hero p, .hero-ctas, .hero .label', {opacity: 0, y: 14, duration: .8, ease: 'power3.out', stagger: .08, delay: .35});
   gsap.to('#hero', {scale: .94, borderRadius: 34, ease: 'none', scrollTrigger: {trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true}});
-  gsap.utils.toArray('.card, .tile-cta').forEach(c => {
+  gsap.utils.toArray('.card, .tile-cta, .moment').forEach(c => {
     gsap.from(c, {y: 60, duration: 1.1, ease: 'power3.out', scrollTrigger: {trigger: c, start: 'top 95%'}});
     const m = c.querySelector('.media'); if (m) gsap.fromTo(m, {yPercent: -4}, {yPercent: 4, ease: 'none', scrollTrigger: {trigger: c, start: 'top bottom', end: 'bottom top', scrub: true}});
   });

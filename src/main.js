@@ -1,6 +1,7 @@
 import './styles/fonts.css';
 import './styles/tokens.css';
 import './styles/main.css';
+import './styles/field.css';
 
 import {GL} from './lib/gl.js';
 import {initSmoothScroll, initChoreography} from './modules/scroll.js';
@@ -15,8 +16,9 @@ import {initCpu} from './modules/cards/cpu.js';
 import {initMarquee} from './modules/marquee.js';
 import {initGlobe} from './modules/globe.js';
 import {initSignature} from './modules/signature.js';
+import {initField} from './modules/field.js';
 
-initSmoothScroll();
+const lenis = initSmoothScroll();
 initNav();
 initCursor();
 if (GL){ initHero(); initSkills(); }
@@ -27,4 +29,5 @@ initCpu();
 initMarquee();
 initGlobe();
 initSignature();
+initField(lenis);
 initChoreography();

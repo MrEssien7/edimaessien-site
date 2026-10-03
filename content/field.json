@@ -1,0 +1,58 @@
+{
+  "$comment": "In the field. To add a moment: put 1-4 photos in media-src/field/<slug>/, add an entry below, run `npm run media`, commit. type is \"moment\" or \"recognition\"; the Recognition sub-section only appears once an entry has type \"recognition\". date is YYYY-MM-DD or YYYY-MM. outcome, link and video are optional. focus is the CSS object-position used when a photo is cropped into a card.",
+  "moments": [
+    {
+      "slug": "threads-of-impact",
+      "type": "moment",
+      "title": "Threads of Impact",
+      "date": "2026-09-26",
+      "organization": "Net Impact Odette",
+      "place": "Downtown Windsor Farmers Market",
+      "story": "At our booth, we helped visitors upcycle previously loved clothing. We also showed them practical ways to reduce textile waste, drawing on my textile waste research.",
+      "outcome": "All proceeds from the event went to the Circularity Council of Canada.",
+      "photos": [
+        {
+          "file": "booth.jpg",
+          "alt": "Edima at the Net Impact Odette booth, stamping a design onto a tote bag beside wooden stamps, an ink roller and price signs",
+          "focus": "30% 40%"
+        }
+      ]
+    },
+    {
+      "slug": "raeon-field-day",
+      "type": "moment",
+      "title": "RAEON field day",
+      "date": "2026-06",
+      "organization": "RAEON",
+      "place": "Lake St. Clair tributaries",
+      "story": "I volunteered for a RAEON field day, sampling water on tributaries of Lake St. Clair. My Windsor–Essex Water Quality app maps open water quality data from 20 community science sites in the region.",
+      "link": {
+        "href": "https://mressien7.github.io/windsor-essex-water-quality/",
+        "label": "Windsor–Essex Water Quality app"
+      },
+      "photos": [
+        {
+          "file": "overpass.jpg",
+          "alt": "Edima in a high-visibility vest on an overpass, looking through binoculars and pointing into the distance",
+          "focus": "50% 45%"
+        },
+        {
+          "file": "meter.jpg",
+          "alt": "A handheld water quality meter held over a muddy, tree-lined tributary"
+        },
+        {
+          "file": "lily-tributary.jpg",
+          "alt": "A tributary covered in lily pads, with a nesting box on a post and forest on both banks"
+        },
+        {
+          "file": "water-lilies.jpg",
+          "alt": "Close-up of lily pads and two white water lilies"
+        }
+      ],
+      "video": {
+        "file": "canopy.mp4",
+        "alt": "Short silent clip looking out over a forest canopy and a shoreline path, panning to open water"
+      }
+    }
+  ]
+}
