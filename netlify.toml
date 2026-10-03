@@ -1,7 +1,10 @@
 [build]
-  command = "npm run build"
+  # The build prints /resume/ to resume.pdf with headless Chromium, so install it first.
+  command = "npx playwright install --only-shell chromium && npm run build"
   publish = "dist"
 
 [build.environment]
   # Match the local Node major; Vite 8 needs Node 20.19+ or 22.12+.
   NODE_VERSION = "24"
+  # Keep the browser inside node_modules, which Netlify caches between builds.
+  PLAYWRIGHT_BROWSERS_PATH = "0"

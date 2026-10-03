@@ -124,17 +124,38 @@ ${card}      <button type="button" class="btn light demo-open" id="demoOpen" ari
 `);
 }
 
+// Résumé page, rendered from content/resume.json. scripts/resume-pdf.mjs prints this same page to resume.pdf.
+const RESUME = path.join(ROOT, 'content', 'resume.json');
+export function renderResume(){
+  const r = read(RESUME);
+  const link = (label, href) => href ? `<a href="${esc(href)}">${esc(label)}</a>` : esc(label);
+  const entry = e => `<div class="r-entry">
+      <div class="r-top"><span><span class="r-role">${esc(e.role)}</span>${e.org ? ` <span class="r-org">· ${esc(e.org)}</span>` : ''}</span>${e.dates ? `<span class="r-dates">${esc(e.dates)}</span>` : e.href ? `<a class="r-link" href="${esc(e.href)}">${esc(e.link)}</a>` : ''}</div>
+      ${e.lines?.length ? `<ul>${e.lines.map(l => `<li>${esc(l)}</li>`).join('')}</ul>` : ''}
+    </div>`;
+  return `<nav class="r-bar" aria-label="Résumé"><a class="r-back" href="/">← edimaessien.dev</a><a class="r-pdf" href="/resume.pdf" download="Edima-Essien-Resume.pdf">Download PDF ↓</a></nav>
+<main class="sheet-r">
+  <header class="r-head">
+    <h1 class="r-name"><i aria-hidden="true">E</i>${esc(r.name)}</h1>
+    <p class="r-headline">${esc(r.headline)}</p>
+    <ul class="r-contact">${r.contact.map(c => `<li>${link(c.label, c.href)}</li>`).join('')}</ul>
+  </header>
+  ${r.sections.map(s => `<section class="r-sec" aria-label="${esc(s.title)}"><h2>${esc(s.title)}</h2>${s.entries.map(entry).join('')}</section>`).join('\n  ')}
+  <section class="r-sec" aria-label="Skills"><h2>Skills</h2><dl class="r-skills">${r.skills.map(k => `<dt>${esc(k.label)}</dt><dd>${esc(k.items)}</dd>`).join('')}</dl></section>
+</main>`;
+}
+
 export default function fieldSection(){
   return {
     name: 'field-section',
     transformIndexHtml: {
       order: 'pre',
-      handler: html => renderDripDemo(html).replace('<!-- @field -->', renderField()).replace('<!-- @portrait -->', renderPortrait()),
+      handler: html => html.includes('<!-- @resume -->') ? html.replace('<!-- @resume -->', renderResume()) : renderDripDemo(html).replace('<!-- @field -->', renderField()).replace('<!-- @portrait -->', renderPortrait()),
     },
     configureServer(server){
       // Editing the content file or regenerating media reloads the dev page.
-      server.watcher.add([CONTENT, MANIFEST]);
-      server.watcher.on('change', f => { if (f === CONTENT || f === MANIFEST) server.ws.send({type: 'full-reload'}); });
+      server.watcher.add([CONTENT, MANIFEST, RESUME]);
+      server.watcher.on('change', f => { if (f === CONTENT || f === MANIFEST || f === RESUME) server.ws.send({type: 'full-reload'}); });
     },
   };
 }

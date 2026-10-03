@@ -1,0 +1,51 @@
+/* Résumé: a Letter-size sheet on the site's paper background. The same page is printed to resume.pdf. */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body.resume-page{margin:0;background:var(--paper-2);color:var(--ink);font-family:var(--f-body);font-size:10pt;line-height:1.42;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+.r-bar{max-width:8.5in;margin:0 auto;padding:18px 16px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.r-bar a{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:10px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+.r-back{color:var(--ink)}
+.r-back:hover{background:rgba(0,0,0,.05)}
+.r-pdf{background:var(--ink);color:var(--on-panel)}
+.r-pdf:hover{background:var(--cobalt)}
+.sheet-r{width:8.5in;min-height:11in;margin:0 auto 40px;background:#fff;padding:.55in .6in;border-radius:6px;box-shadow:0 20px 50px -30px rgba(18,53,78,.45)}
+.r-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:6px 20px;padding-bottom:12px;border-bottom:1.5px solid var(--ink)}
+.r-name{grid-column:1/-1;margin:0;font-family:var(--f-display);font-stretch:78%;font-weight:700;text-transform:uppercase;font-size:34pt;line-height:.86;letter-spacing:-.005em}
+.r-name i{font-style:normal;font-family:Georgia,'Times New Roman',serif;font-weight:700;text-transform:none;color:var(--cobalt);margin-right:.08em}
+.r-headline{margin:0;font-size:10.5pt;color:var(--ink-2)}
+.r-contact{grid-column:1/-1;list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:2px 14px;font-family:var(--f-mono);font-size:7.6pt;letter-spacing:.02em}
+.r-contact a{text-decoration:none}
+.r-contact a:hover{text-decoration:underline}
+.r-sec{margin-top:13px}
+.r-sec h2{margin:0 0 6px;font-family:var(--f-mono);font-size:7.6pt;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt);display:flex;align-items:center;gap:10px}
+.r-sec h2::after{content:"";flex:1;height:1px;background:var(--line)}
+.r-entry{margin:0 0 8px;break-inside:avoid}
+.r-entry:last-child{margin-bottom:0}
+.r-top{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.r-role{font-weight:600;font-size:10.4pt;letter-spacing:-.005em}
+.r-dates{font-family:var(--f-mono);font-size:7.8pt;color:var(--ink-2);white-space:nowrap}
+.r-org{color:var(--ink-2)}
+.r-org a{text-decoration:none}
+.r-link{font-family:var(--f-mono);font-size:7.6pt;color:var(--ink-2);text-decoration:none;white-space:nowrap}
+.r-entry ul{margin:3px 0 0;padding-left:14px}
+.r-entry li{margin:1px 0}
+.r-entry li::marker{color:var(--ecru)}
+.r-skills{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 14px}
+.r-skills dt{font-family:var(--f-mono);font-size:7.6pt;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);padding-top:2px}
+.r-skills dd{margin:0}
+.r-foot{margin-top:16px;padding-top:8px;border-top:1px solid var(--line);font-family:var(--f-mono);font-size:7pt;color:var(--ink-2);display:flex;justify-content:space-between}
+
+/* Phones: the sheet becomes the page */
+@media screen and (max-width:8.9in){
+  .sheet-r{width:auto;min-height:0;margin:0 0 24px;border-radius:0;padding:28px 18px;box-shadow:none}
+  .r-name{font-size:30pt}
+  .r-top{flex-direction:column;gap:0}
+}
+@media print{
+  @page{size:Letter;margin:0}
+  body.resume-page{background:#fff}
+  .r-bar{display:none}
+  .sheet-r{margin:0;border-radius:0;box-shadow:none;min-height:0;height:11in;overflow:hidden}
+}

@@ -1,0 +1,101 @@
+{
+  "$comment": "Single source for the /resume page and resume.pdf (the PDF is printed from the page at build time, so they always match). Use only confirmed facts. No phone number: the PDF is public.",
+  "name": "Edima Essien",
+  "headline": "Business and Computer Science student · Open to a summer 2027 co-op",
+  "contact": [
+    {"label": "essienedima74@gmail.com", "href": "mailto:essienedima74@gmail.com"},
+    {"label": "linkedin.com/in/edima-essien-27a938329", "href": "https://www.linkedin.com/in/edima-essien-27a938329"},
+    {"label": "github.com/MrEssien7", "href": "https://github.com/MrEssien7"},
+    {"label": "edimaessien.dev", "href": "https://edimaessien.dev"},
+    {"label": "Windsor, Ontario"}
+  ],
+  "sections": [
+    {
+      "title": "Education",
+      "entries": [
+        {
+          "role": "BComm Honours and Computer Science, Co-op",
+          "org": "University of Windsor",
+          "dates": "Expected 2028"
+        }
+      ]
+    },
+    {
+      "title": "Experience",
+      "entries": [
+        {
+          "role": "Data & Reporting Analyst Support Student (Ignite)",
+          "org": "Office of the AVP External, UWindsor",
+          "dates": "Sept 2026 – Apr 2027"
+        },
+        {
+          "role": "Data & Reporting Analyst, Co-op",
+          "org": "Office of the AVP External, UWindsor",
+          "dates": "May – Aug 2026",
+          "lines": [
+            "Assessed 7 systems and documented 114+ fields in a single data dictionary.",
+            "Identified a data quality issue whose fix saved $6,000+.",
+            "Delivered an integration readiness assessment to leadership."
+          ]
+        },
+        {
+          "role": "Store Associate",
+          "org": "Dollarama, Windsor",
+          "dates": "Sept – Dec 2025",
+          "lines": ["Served a high volume of customers daily, handling checkout, questions and returns while keeping the floor stocked and organized."]
+        }
+      ]
+    },
+    {
+      "title": "Leadership & Volunteering",
+      "entries": [
+        {
+          "role": "VP Special Projects",
+          "org": "Net Impact Odette",
+          "dates": "2026 – 27",
+          "lines": [
+            "Leading research on textile waste in Windsor-Essex.",
+            "Developing a children's book for the chapter on the circular economy and reducing waste.",
+            "Helped run Threads of Impact (Sept 26, 2026), a booth at the Downtown Windsor Farmers Market where visitors upcycled previously loved clothing and learned how to cut textile waste. Proceeds went to the Circularity Council of Canada."
+          ]
+        },
+        {
+          "role": "Field Data Volunteer",
+          "org": "RAEON, Great Lakes Institute",
+          "dates": "June 2026",
+          "lines": ["Volunteered on a field day sampling water on tributaries of Lake St. Clair."]
+        }
+      ]
+    },
+    {
+      "title": "Projects",
+      "entries": [
+        {
+          "role": "Drip",
+          "org": "Windows app · Rust + TypeScript · built with Claude Code",
+          "href": "https://github.com/MrEssien7/drip",
+          "link": "github.com/MrEssien7/drip",
+          "lines": ["Approve AI commands from the top of your screen."]
+        },
+        {
+          "role": "Windsor–Essex Water Quality",
+          "org": "React · Open Data",
+          "href": "https://mressien7.github.io/windsor-essex-water-quality/",
+          "link": "mressien7.github.io/windsor-essex-water-quality",
+          "lines": ["Maps open water quality data from 20 community science sites in Windsor–Essex."]
+        },
+        {
+          "role": "CPU Scheduling Simulator",
+          "org": "Python · In progress",
+          "lines": ["Python simulator of 5 CPU scheduling algorithms, including Round Robin."]
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {"label": "Data", "items": "Python, Oracle SQL, Excel, Power Query"},
+    {"label": "Systems", "items": "Salesforce, Raiser's Edge NXT, draw.io"},
+    {"label": "Software", "items": "React, Vite, Git, GitHub Actions, Claude Code"},
+    {"label": "Tools", "items": "Qualtrics, Constant Contact, Word, PowerPoint"}
+  ]
+}
