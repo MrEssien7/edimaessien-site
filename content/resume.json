@@ -3,9 +3,9 @@
   "name": "Edima Essien",
   "headline": "Business and Computer Science student · Open to a summer 2027 co-op",
   "contact": [
-    {"label": "essienedima74@gmail.com", "href": "mailto:essienedima74@gmail.com"},
-    {"label": "linkedin.com/in/edima-essien-27a938329", "href": "https://www.linkedin.com/in/edima-essien-27a938329"},
-    {"label": "github.com/MrEssien7", "href": "https://github.com/MrEssien7"},
+    {"label": "essienedima74@gmail.com", "href": "mailto:essienedima74@gmail.com", "event": ["email", "Email"]},
+    {"label": "linkedin.com/in/edima-essien-27a938329", "href": "https://www.linkedin.com/in/edima-essien-27a938329", "event": ["linkedin", "LinkedIn"]},
+    {"label": "github.com/MrEssien7", "href": "https://github.com/MrEssien7", "event": ["github", "GitHub"]},
     {"label": "edimaessien.dev", "href": "https://edimaessien.dev"},
     {"label": "Windsor, Ontario"}
   ],
