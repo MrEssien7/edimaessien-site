@@ -2,6 +2,36 @@
   "$comment": "In the field. To add a moment: put 1-4 photos in media-src/field/<slug>/, add an entry below, run `npm run media`, commit. type is \"moment\" or \"recognition\"; the Recognition sub-section only appears once an entry has type \"recognition\". date is YYYY-MM-DD or YYYY-MM. outcome, link and video are optional. focus is the CSS object-position used when a photo is cropped into a card.",
   "moments": [
     {
+      "slug": "ventureu-2026",
+      "type": "recognition",
+      "title": "VentureU 2026",
+      "date": "2026-10-17",
+      "organization": "UWindsor Fusion",
+      "place": "University of Windsor",
+      "story": "Over Reading Week, 100 University of Windsor students were put into teams and handed real Windsor-Essex problems. Ours was agricultural waste: an estimated 27,215 tons of tomato vines go from Leamington's greenhouses to landfill every year.",
+      "outcome": "Our team, I.N.Q (Innovation Never Quits), won the final pitch for our problem statement and a $5,000 team prize.",
+      "photos": [
+        {
+          "file": "stage.jpg",
+          "alt": "Edima on stage with six others holding gold trophies, in front of a screen reading VentureU Final Pitch Competition, Problem Statement 2 Winner",
+          "focus": "0% 60%"
+        },
+        {
+          "file": "team.jpg",
+          "alt": "Edima and his three teammates holding gold trophies in the Odette School of Business atrium, beside a yellow Fusion banner",
+          "focus": "50% 45%"
+        },
+        {
+          "file": "worktable.jpg",
+          "alt": "Selfie of Edima with his team around a work table covered in colour-coded sticky notes during the bootcamp"
+        },
+        {
+          "file": "trophy.jpg",
+          "alt": "A gold trophy with a plaque reading VentureU 2026 Pitch Winner"
+        }
+      ]
+    },
+    {
       "slug": "threads-of-impact",
       "type": "moment",
       "title": "Threads of Impact",

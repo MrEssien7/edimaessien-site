@@ -64,5 +64,45 @@
     ],
     "width": 1290,
     "height": 1990
+  },
+  "field/ventureu-2026/stage.jpg": {
+    "base": "media/field/ventureu-2026/stage",
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 4031,
+    "height": 3023
+  },
+  "field/ventureu-2026/team.jpg": {
+    "base": "media/field/ventureu-2026/team",
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1600,
+    "height": 1200
+  },
+  "field/ventureu-2026/trophy.jpg": {
+    "base": "media/field/ventureu-2026/trophy",
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1200,
+    "height": 1600
+  },
+  "field/ventureu-2026/worktable.jpg": {
+    "base": "media/field/ventureu-2026/worktable",
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1600,
+    "height": 1200
   }
 }
