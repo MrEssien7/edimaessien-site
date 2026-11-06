@@ -11,6 +11,8 @@ const TYPES = ['moment', 'recognition'];
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'})[c]);
+// GoatCounter click-event attributes (same shape as the résumé's track helper).
+const clickAttrs = ([name, title]) => ` data-goatcounter-click="${esc(name)}" data-goatcounter-title="${esc(title)}"`;
 const read = f => JSON.parse(fs.readFileSync(f, 'utf8'));
 
 function fmtDate(d){
@@ -46,6 +48,7 @@ function validate(list){
     for (const p of m.photos) if (!p.file || !p.alt) throw new Error(`${at}: every photo needs "file" and "alt"`);
     if (m.video && (!m.video.file || !m.video.alt)) throw new Error(`${at}: video needs "file" and "alt"`);
     if (m.link && (!m.link.href || !m.link.label)) throw new Error(`${at}: link needs "href" and "label"`);
+    if (m.link?.rel && !/^[a-z ]+$/.test(m.link.rel)) throw new Error(`${at}: link.rel must be lowercase words, e.g. "sponsored noopener"`);
   }
 }
 
@@ -79,7 +82,7 @@ function detail(m, manifest){
     <p class="mono fd-date">${esc(fmtDate(m.date))}</p>
     <p class="fd-story">${esc(m.story)}</p>
     ${m.outcome ? `<p class="fd-outcome"><span class="mono">Outcome</span>${esc(m.outcome)}</p>` : ''}
-    ${m.link ? `<a class="btn dark" href="${esc(m.link.href)}"><span>${esc(m.link.label)}</span><span class="arr">→</span></a>` : ''}
+    ${m.link ? `<a class="btn dark" href="${esc(m.link.href)}"${m.link.rel ? ` rel="${esc(m.link.rel)}"` : ''}${clickAttrs([`out-${m.slug}`, m.link.label])}><span>${esc(m.link.label)}</span><span class="arr">→</span></a>` : ''}
   </div>
 </template>`;
 }

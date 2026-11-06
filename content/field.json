@@ -1,6 +1,27 @@
 {
-  "$comment": "In the field. To add a moment: put 1-4 photos in media-src/field/<slug>/, add an entry below, run `npm run media`, commit. type is \"moment\" or \"recognition\"; the Recognition sub-section only appears once an entry has type \"recognition\". date is YYYY-MM-DD or YYYY-MM. outcome, link and video are optional. focus is the CSS object-position used when a photo is cropped into a card.",
+  "$comment": "In the field. To add a moment: put 1-4 photos in media-src/field/<slug>/, add an entry below, run `npm run media`, commit. type is \"moment\" or \"recognition\"; the Recognition sub-section only appears once an entry has type \"recognition\". date is YYYY-MM-DD or YYYY-MM. outcome, link and video are optional; link.rel (e.g. \"sponsored noopener\") marks a paid or partner link. focus is the CSS object-position used when a photo is cropped into a card.",
   "moments": [
+    {
+      "slug": "ajo-ambassador",
+      "type": "moment",
+      "title": "Ajo Student Ambassador",
+      "date": "2026-11",
+      "organization": "Ajo App Inc.",
+      "place": "University of Windsor",
+      "story": "I joined Ajo as a Student Ambassador, my first brand partnership. Ajo brings the rotating savings circle into an app: a group contributes on a set schedule, and each member receives the full pot in turn. I'm introducing it to students at the University of Windsor. This is a compensated ambassador role.",
+      "link": {
+        "href": "https://ajoapp.ca",
+        "label": "Visit Ajo",
+        "rel": "sponsored noopener"
+      },
+      "photos": [
+        {
+          "file": "ajo.jpg",
+          "alt": "Edima in a red and cream jacket giving a thumbs up beside a man in a white Ajo T-shirt, inside a university building",
+          "focus": "50% 30%"
+        }
+      ]
+    },
     {
       "slug": "ventureu-2026",
       "type": "recognition",

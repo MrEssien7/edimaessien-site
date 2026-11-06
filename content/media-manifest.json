@@ -104,5 +104,15 @@
     ],
     "width": 1600,
     "height": 1200
+  },
+  "field/ajo-ambassador/ajo.jpg": {
+    "base": "media/field/ajo-ambassador/ajo",
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1536,
+    "height": 2048
   }
 }
