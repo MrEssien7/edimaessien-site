@@ -110,13 +110,13 @@ h2.title{font-family:var(--f-body);font-weight:500;font-size:clamp(2rem,4.4vw,3.
 .island[data-s="ask"]{box-shadow:0 18px 40px -14px rgba(0,0,0,.8),0 0 0 1px rgba(242,177,58,.5)}
 .island .head{display:flex;align-items:center;gap:10px;height:56px;padding:0 14px}
 .island .drop{width:22px;height:26px;flex:none;background:#4CC2DB;clip-path:path("M11 0 C14 6 22 12 22 17 A11 11 0 0 1 0 17 C0 12 8 6 11 0 Z");transition:background .4s}
-.island[data-s="ask"] .drop{background:#F2B13A}
+.island[data-s="ask"] .drop{background:var(--amber)}
 .island[data-s="done"] .drop{background:var(--ok)}
 .island .hd{min-width:0;flex:1;line-height:1.25}
 .island .hd b{display:block;font-size:.82rem;font-weight:600}
 .island .hd span{display:block;font-size:.72rem;color:#8696a5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .island .chip{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:99px;background:rgba(76,194,219,.15);color:#4CC2DB}
-.island[data-s="ask"] .chip{background:rgba(242,177,58,.15);color:#F2B13A}
+.island[data-s="ask"] .chip{background:rgba(242,177,58,.15);color:var(--amber)}
 .island[data-s="done"] .chip{background:rgba(59,208,127,.15);color:var(--ok)}
 .island .body{padding:0 14px 14px;display:grid;gap:10px}
 .island .cmd{font-family:var(--f-mono);font-size:.74rem;background:#151d25;border:1px solid #1e2a34;border-radius:8px;padding:9px 11px;color:#eaf1f6}
@@ -125,7 +125,7 @@ h2.title{font-family:var(--f-body);font-weight:500;font-size:clamp(2rem,4.4vw,3.
 .island .acts span.allow{background:#4CC2DB;color:#04222a;border-color:#4CC2DB;transition:transform .2s}
 .island .acts span.allow.press{transform:scale(.94)}
 .island .timer{height:3px;border-radius:3px;background:#1e2a34;overflow:hidden}
-.island .timer i{display:block;height:100%;background:#F2B13A;width:100%;transform-origin:left}
+.island .timer i{display:block;height:100%;background:var(--amber);width:100%;transform-origin:left}
 
 /* Water media */
 .m-water{background:linear-gradient(160deg,#0d4a66,#12354e 60%,#0a2233)}

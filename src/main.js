@@ -1,4 +1,5 @@
 import './lib/analytics.js';
+import './lib/seasonal.js';
 import './styles/fonts.css';
 import './styles/tokens.css';
 import './styles/main.css';

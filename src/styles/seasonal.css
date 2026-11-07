@@ -1,0 +1,13 @@
+/* Seasonal particle layer (src/lib/seasonal.js). The library already sets pointer-events:none on its canvas;
+   this also keeps it out of text selection, hides it when switched off and keeps it out of print and the résumé PDF. */
+canvas[data-falling-leaves]{pointer-events:none;user-select:none;-webkit-user-select:none}
+.fx-off canvas[data-falling-leaves]{display:none}
+/* White snow disappears on the Ecru paper, so it gets a faint ink edge; on the navy panels the edge is invisible. */
+.fx-winter canvas[data-falling-leaves]{filter:drop-shadow(0 0 1px rgba(18,53,78,.55))}
+@media print{canvas[data-falling-leaves]{display:none!important}}
+
+.season-toggle{appearance:none;border:0;background:none;padding:0;margin:0;font:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px}
+.season-toggle:hover{text-decoration-color:currentColor}
+.season-toggle:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px;border-radius:2px}
+.season-toggle[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){.season-toggle{display:none}}

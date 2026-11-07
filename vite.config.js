@@ -1,8 +1,9 @@
 import {defineConfig} from 'vite';
 import fieldSection from './plugins/field-section.js';
+import fontPreload from './plugins/font-preload.js';
 
 export default defineConfig({
-  plugins: [fieldSection()],
+  plugins: [fieldSection(), fontPreload()],
   build: {
     // Pages: the site, the printable résumé (served at /resume/) and the 404 page Netlify serves for missing paths.
     rollupOptions: {input: {main: 'index.html', resume: 'resume/index.html', notfound: '404.html'}},
