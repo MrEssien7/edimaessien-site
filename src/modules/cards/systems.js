@@ -3,19 +3,23 @@ import {$, reduce, visible} from '../../lib/env.js';
 /* ---------- Systems network canvas ---------- */
 export function initSystems(){
   const cv = $('#sysCv'), x = cv.getContext('2d');
-  const N = ["Raiser's Edge NXT", 'Salesforce', 'Constant Contact', 'Constant Contact', 'Qualtrics', 'PoliTraQ', 'Agility PR'];
+  const N = ["Raiser's Edge NXT", 'Salesforce', 'Constant Contact (Alumni)', 'Constant Contact (PAC)', 'Qualtrics', 'PoliTraQ', 'Agility PR'];
   // The diagram fills the space between the corner labels and the caption (.meta), so no node sits under the text.
   // Sizes come from a ResizeObserver (first layout, resize, web fonts arriving), never per frame, so drawing
   // never forces a layout.
   const meta = cv.closest('.card')?.querySelector('.meta');
   let w, h, dpr, metaH = 140, run = false;
+  // Pill widths, measured once: nodes are kept far enough from the edges that no label is cut off on a phone.
+  x.font = '500 12px Geist, system-ui, sans-serif';
+  let half = N.map(n => x.measureText(n).width / 2 + 12);
+  document.fonts?.ready.then(() => { x.font = '500 12px Geist, system-ui, sans-serif'; half = N.map(n => x.measureText(n).width / 2 + 12); });
   function size(){ dpr = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; metaH = meta?.offsetHeight || 140; cv.width = w * dpr; cv.height = h * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0); run = run || reduce; }
   const ro = new ResizeObserver(size); ro.observe(cv); if (meta) ro.observe(meta);
   visible(cv, v => run = v);
   function nodes(t){
     const top = 56, bottom = h - metaH + 20, cy = (top + bottom) / 2;
     const cx = w / 2, rx = Math.min(w * .36, 260), ry = Math.max(40, Math.min((bottom - top) / 2 - 18, 170));
-    return N.map((n, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / N.length + t * .05; return {n, x: cx + Math.cos(a) * rx, y: cy + Math.sin(a) * ry}; }).concat([{n: 'One constituent', x: cx, y: cy, hub: true}]);
+    return N.map((n, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / N.length + t * .05, m = half[i] + 8; return {n, x: Math.min(w - m, Math.max(m, cx + Math.cos(a) * rx)), y: cy + Math.sin(a) * ry}; }).concat([{n: 'One constituent', x: cx, y: cy, hub: true}]);
   }
   const t0 = performance.now();
   let frame = 0;

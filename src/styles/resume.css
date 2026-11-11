@@ -1,7 +1,7 @@
 /* Résumé: a Letter-size sheet on the site's paper background. The same page is printed to resume.pdf. */
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body.resume-page{margin:0;background:var(--paper-2);color:var(--ink);font-family:var(--f-body);font-size:10pt;line-height:1.42;-webkit-font-smoothing:antialiased}
+body.resume-page{margin:0;background:var(--paper-2);color:var(--ink);font-family:var(--f-body);font-size:10pt;line-height:1.38;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
 .r-bar{max-width:8.5in;margin:0 auto;padding:18px 16px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
@@ -10,18 +10,18 @@ a{color:inherit}
 .r-back:hover{background:rgba(0,0,0,.05)}
 .r-pdf{background:var(--ink);color:var(--on-panel)}
 .r-pdf:hover{background:var(--cobalt)}
-.sheet-r{width:8.5in;min-height:11in;margin:0 auto 40px;background:#fff;padding:.55in .6in;border-radius:6px;box-shadow:0 20px 50px -30px rgba(18,53,78,.45)}
-.r-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:6px 20px;padding-bottom:12px;border-bottom:1.5px solid var(--ink)}
+.sheet-r{width:8.5in;min-height:11in;margin:0 auto 40px;background:#fff;padding:.48in .6in;border-radius:6px;box-shadow:0 20px 50px -30px rgba(18,53,78,.45)}
+.r-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:6px 20px;padding-bottom:10px;border-bottom:1.5px solid var(--ink)}
 .r-name{grid-column:1/-1;margin:0;font-family:var(--f-display);font-stretch:78%;font-weight:700;text-transform:uppercase;font-size:34pt;line-height:.86;letter-spacing:-.005em}
 .r-e{display:inline-block;height:.73em;width:auto;vertical-align:baseline;margin-right:.07em;color:var(--cobalt)}
 .r-headline{margin:0;font-size:10.5pt;color:var(--ink-2)}
 .r-contact{grid-column:1/-1;list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:2px 14px;font-family:var(--f-mono);font-size:7.6pt;letter-spacing:.02em}
 .r-contact a{text-decoration:none}
 .r-contact a:hover{text-decoration:underline}
-.r-sec{margin-top:13px}
+.r-sec{margin-top:11px}
 .r-sec h2{margin:0 0 6px;font-family:var(--f-mono);font-size:7.6pt;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt);display:flex;align-items:center;gap:10px}
 .r-sec h2::after{content:"";flex:1;height:1px;background:var(--line)}
-.r-entry{margin:0 0 8px;break-inside:avoid}
+.r-entry{margin:0 0 6px;break-inside:avoid}
 .r-entry:last-child{margin-bottom:0}
 .r-top{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
 .r-role{font-weight:600;font-size:10.4pt;letter-spacing:-.005em}

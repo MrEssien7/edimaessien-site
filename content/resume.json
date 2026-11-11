@@ -32,7 +32,11 @@
         {
           "role": "Data & Reporting Analyst Support Student (Ignite)",
           "org": "Office of the AVP External, UWindsor",
-          "dates": "Sep 2026 – Apr 2027"
+          "dates": "Sep 2026 – Apr 2027",
+          "lines": [
+            "Testing Raiser's Edge NXT's email and event tools against a mock alumni event, logging 110 functions to judge whether it can run the office's communications.",
+            "Preparing findings and a recommendation for departmental leaders."
+          ]
         },
         {
           "role": "Data & Reporting Analyst, Co-op",
