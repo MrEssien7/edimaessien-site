@@ -42,15 +42,14 @@
       <li><a href="#experience">Experience</a></li>
     </ul>
     <div class="nav-cta">
-      <a class="btn chip-res" href="/resume/"><span>Résumé</span></a>
-      <a class="btn light" href="#contact"><span>Book a call</span><span class="arr">→</span></a>
+      <a class="btn light" href="/resume/"><span>Résumé</span><span class="arr" aria-hidden="true">→</span></a>
     </div>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><b></b><b></b></button>
   </div>
 </nav>
 <div class="sheet" id="sheet" aria-hidden="true">
   <button id="closeSheet">Close</button>
-  <a href="#work">Work</a><a href="#skills">Skills</a><a href="#about">About</a><a href="#field">In the field</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+  <a href="#work">Work</a><a href="#skills">Skills</a><a href="#about">About</a><a href="#field">In the field</a><a href="#experience">Experience</a><a href="/resume/">Résumé</a><a href="#contact">Contact</a>
 </div>
 
 <main class="page" id="top">
@@ -61,15 +60,15 @@
     <div class="hero-copy">
       <span class="label">( Hi, I'm Edima ) <span class="spin">✳</span></span>
       <h1 class="display"><span class="ln"><span>Turning data</span></span><span class="ln"><span>into decisions</span></span></h1>
-      <p>Business and computer science student in Windsor, Ontario, building tools that make messy systems make sense.</p>
+      <p>Data &amp; reporting analyst and BComm + CS <span class="nw">co-op</span> student at UWindsor. Open to summer 2027 <span class="nw">co-op</span>.</p>
       <div class="hero-ctas">
-        <a class="btn light" href="#work"><span>View projects</span><span class="arr">→</span></a>
-        <a class="btn dark" href="#contact"><span>Book a call</span><span class="arr">→</span></a>
+        <a class="btn light" href="#work"><span>View work</span><span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn dark" href="/resume/"><span>Résumé</span><span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
     <div class="hero-foot mono">
-      <span>Scroll for more ✳</span>
-      <span class="live hide-s"><i></i>Open to summer 2027 co-op</span>
+      <span class="hide-s">Scroll for more ✳</span>
+      <span class="live"><i></i>Open to summer 2027 co-op</span>
     </div>
   </header>
 
@@ -82,8 +81,36 @@
     </div>
 
     <div class="work-grid">
+      <article class="card wide case">
+        <div class="media m-sys"><canvas id="sysCv" aria-hidden="true"></canvas></div>
+        <div class="top"><span>01</span><span>May – Aug 2026</span></div>
+        <div class="meta">
+          <h3 id="dsa-h">Data Source Assessment</h3>
+          <p class="outcome">Assessed 7 systems and documented 114+ fields in one data dictionary. One data quality finding saved $6,000+.</p>
+          <div class="pills"><span class="pill">Co-op</span><span class="pill">Data Quality</span></div>
+          <details class="case-more">
+            <summary class="btn light" data-goatcounter-click="case-data-source-assessment" data-goatcounter-title="Data Source Assessment: read the case"><span class="when-closed">Read the case</span><span class="when-open">Close</span><span class="arr" aria-hidden="true">↓</span></summary>
+            <div class="case-panel" role="region" aria-labelledby="dsa-h" data-lenis-prevent>
+              <div><h4 class="label">Problem</h4><p>Data at the Office of the AVP External lived in seven separate systems. The question was how data moves through them, and whether it was ready to be integrated.</p></div>
+              <div><h4 class="label">What I did</h4><p>Over a 16-week co-op, I assessed all 7 systems and documented 114+ fields in a single data dictionary.</p></div>
+              <div><h4 class="label">Result</h4><p>I identified a data quality issue whose fix saved $6,000+, and delivered an integration readiness assessment to leadership.</p></div>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <a class="card" href="https://mressien7.github.io/windsor-essex-water-quality/" data-cursor>
+        <div class="media m-water"><svg id="waterSvg" aria-hidden="true"></svg></div>
+        <div class="top"><span>02</span><span>2026</span></div>
+        <div class="meta">
+          <h3>Windsor–Essex Water Quality</h3>
+          <p class="outcome">Maps open water quality data from 20 community science sites across Windsor–Essex.</p>
+          <div class="pills"><span class="pill">React</span><span class="pill">Open Data</span></div>
+        </div>
+      </a>
+
       <!-- @drip-card -->
-      <a class="card wide" href="https://github.com/MrEssien7/drip" data-cursor>
+      <a class="card" href="https://github.com/MrEssien7/drip" data-cursor>
         <div class="media m-drip">
           <div class="island" id="island" data-s="work">
             <div class="head"><span class="drop"></span><span class="hd"><b>weather-cli</b><span id="islSub">Read · forecast.ts</span></span><span class="chip" id="islChip">Working</span></div>
@@ -101,41 +128,25 @@
   }));
 }</pre></div>
         </div>
-        <div class="top"><span>01</span><span>2026</span></div>
+        <div class="top"><span>03</span><span>2026</span></div>
         <div class="meta">
-          <div><h3>Drip</h3><div class="pills"><span class="pill">Windows App</span><span class="pill">Rust + TypeScript</span><span class="pill">Claude Code</span></div></div>
-          <span class="yr">Approve AI commands from the top of your screen</span>
+          <h3>Drip</h3>
+          <p class="outcome">A Windows app for approving AI coding commands from the top of your screen.</p>
+          <div class="pills"><span class="pill">Windows App</span><span class="pill">Rust + TypeScript</span><span class="pill">Claude Code</span></div>
         </div>
         <div class="bar"><i id="dripBar"></i></div>
       </a>
       <!-- /@drip-card -->
 
-      <a class="card" href="https://mressien7.github.io/windsor-essex-water-quality/" data-cursor>
-        <div class="media m-water"><svg id="waterSvg" aria-hidden="true"></svg></div>
-        <div class="top"><span>02</span><span>2026</span></div>
-        <div class="meta">
-          <div><h3>Windsor–Essex Water Quality</h3><div class="pills"><span class="pill">React</span><span class="pill">Open Data</span></div></div>
-          <span class="yr">20 sites</span>
-        </div>
-      </a>
-
-      <a class="card" href="#about" data-cursor>
-        <div class="media m-sys"><canvas id="sysCv" aria-hidden="true"></canvas></div>
-        <div class="top"><span>03</span><span>May–Aug 2026</span></div>
-        <div class="meta">
-          <div><h3>Data Source Assessment</h3><div class="pills"><span class="pill">Co-op</span><span class="pill">Data Quality</span></div></div>
-          <span class="yr">7 systems</span>
-        </div>
-      </a>
-
       <div class="card short">
         <div class="media m-cpu">
           <div class="gantt" id="gantt"></div>
         </div>
-        <div class="top"><span>04 · Round Robin, q=2</span><span>In progress</span></div>
+        <div class="top"><span>04</span><span>In progress</span></div>
         <div class="meta">
-          <div><h3>CPU Scheduling Simulator</h3><div class="pills"><span class="pill">Python</span><span class="pill">Operating Systems</span></div></div>
-          <span class="yr">5 algorithms</span>
+          <h3>CPU Scheduling Simulator</h3>
+          <p class="outcome">Simulates 5 CPU scheduling algorithms in Python, including Round Robin.</p>
+          <div class="pills"><span class="pill">Python</span><span class="pill">Operating Systems</span></div>
         </div>
       </div>
 
@@ -178,15 +189,14 @@
     <div class="sec-head"><h2 class="big" id="about-h">The person behind it</h2></div>
     <div class="bento">
       <div class="b stat"><strong><span data-count="114">114</span><em>+</em></strong><span>Fields documented in one data dictionary</span></div>
-      <div class="b stat"><strong><span data-count="7">7</span></strong><span>Institutional systems assessed</span></div>
-      <div class="b globe"><div class="gtop"><b>Based in Windsor, Ontario</b><span class="mono"><i></i>Open to summer 2027 co-op</span></div><canvas id="globe" aria-hidden="true"></canvas></div>
       <div class="b stat"><strong><em>$</em><span data-count="6">6</span>K<em>+</em></strong><span>Saved by one data quality finding</span></div>
-      <div class="b stat"><strong><span data-count="2">2</span></strong><span>Apps shipped to GitHub</span></div>
+      <div class="b globe"><div class="gtop"><b>Based in Windsor, Ontario</b><span class="mono"><i></i>Open to summer 2027 co-op</span></div><canvas id="globe" aria-hidden="true"></canvas></div>
+      <div class="b stat wide"><strong><span data-count="7">7</span></strong><span>Institutional systems assessed</span></div>
       <div class="b portrait"><!-- @portrait --><div class="cap mono"><span>Edima Essien</span><span>Windsor, ON</span></div></div>
       <div class="b bio">
         <div>
           <span class="label">( In short )</span>
-          <h3 style="margin-top:12px">Third-year BComm Honours and Computer Science co-op student at the University of Windsor.</h3>
+          <h3 style="margin-top:12px">Third-year BComm Honours and Computer Science <span class="nw">co-op</span> student at the University of Windsor.</h3>
         </div>
         <p>I work as a Data &amp; Reporting Analyst Support Student in the Office of the AVP External, after a 16-week co-op there assessing how data moves through seven systems. Most organizational problems turn out to be data problems, so I study both: the business that needs an answer, and the software that can give one.</p>
         <dl class="now-list">
@@ -205,13 +215,7 @@
   <section class="sec" id="experience" aria-labelledby="exp-h" style="padding-top:0">
     <span class="label">( Experience ) ↓</span>
     <div class="sec-head"><h2 class="big" id="exp-h">Where I've worked</h2><a class="link-all" href="/resume.pdf" download="Edima-Essien-Resume.pdf" data-goatcounter-click="resume-pdf" data-goatcounter-title="Résumé PDF">Résumé PDF <span aria-hidden="true">↓</span></a></div>
-    <div class="ledger">
-      <div class="row"><b>Data &amp; Reporting Analyst Support Student</b><span>Office of the AVP External, UWindsor</span><span class="yr">2026–27</span><span class="ar">→</span></div>
-      <div class="row"><b>Data &amp; Reporting Analyst, Co-op</b><span>Office of the AVP External, UWindsor</span><span class="yr">May–Aug 2026</span><span class="ar">→</span></div>
-      <div class="row"><b>VP Special Projects</b><span>Net Impact Odette</span><span class="yr">2026–27</span><span class="ar">→</span></div>
-      <div class="row"><b>Field Data Volunteer</b><span>RAEON, Great Lakes Institute</span><span class="yr">Jun 2026</span><span class="ar">→</span></div>
-      <div class="row"><b>Store Associate</b><span>Dollarama, Windsor</span><span class="yr">2025</span><span class="ar">→</span></div>
-    </div>
+    <!-- @experience -->
   </section>
 
   <!-- CTA -->

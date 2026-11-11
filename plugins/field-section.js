@@ -15,10 +15,12 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;',
 const clickAttrs = ([name, title]) => ` data-goatcounter-click="${esc(name)}" data-goatcounter-title="${esc(title)}"`;
 const read = f => JSON.parse(fs.readFileSync(f, 'utf8'));
 
+// Site-wide date style: single dates are "Mon YYYY" (e.g. "Sep 2026"); ranges are "May – Aug 2026",
+// "Sep 2026 – Apr 2027" or "Nov 2026 – Present". The day, when field.json has one, is used only for sorting.
 function fmtDate(d){
   const m = /^(\d{4})-(\d{2})(?:-(\d{2}))?$/.exec(d);
   if (!m) throw new Error(`field.json: date "${d}" must be YYYY-MM-DD or YYYY-MM`);
-  return m[3] ? `${MONTHS[+m[2] - 1]} ${+m[3]}, ${m[1]}` : `${MONTHS[+m[2] - 1]} ${m[1]}`;
+  return `${MONTHS[+m[2] - 1]} ${m[1]}`;
 }
 
 function media(manifest, key){
@@ -58,7 +60,7 @@ function card(m, i, manifest){
   return `<li><button class="moment" type="button" data-moment="${esc(m.slug)}" data-cursor aria-haspopup="dialog" aria-label="${esc(`${m.title}, ${m.organization}, ${fmtDate(m.date)}. Open details`)}">
   <div class="media">${picture(cm, {alt: '', sizes: '(max-width:680px) 84vw, (max-width:1100px) 46vw, 40vw', focus: cover.focus})}</div>
   <div class="top"><span>${String(i + 1).padStart(2, '0')}</span><span>${esc(fmtDate(m.date))}</span></div>
-  <div class="meta"><div><h3>${esc(m.title)}</h3><div class="pills"><span class="pill">${esc(m.organization)}</span><span class="pill">${esc(m.place)}</span></div></div><span class="yr">${count} ${count === 1 ? 'photo' : m.video ? 'items' : 'photos'} ↗</span></div>
+  <div class="meta"><div><h3>${esc(m.title)}</h3><div class="pills"><span class="pill">${esc(m.organization)}</span><span class="pill">${esc(m.place)}</span></div></div>${count > 1 ? `<span class="yr">${count} ${m.video ? 'items' : 'photos'} ↗</span>` : ''}</div>
 </button></li>`;
 }
 
@@ -122,7 +124,7 @@ export function renderDripDemo(html){
   if (!m) return html.replace(re, '$1');
   // The player goes next to the other dialogs, outside the work grid, so it doesn't take a grid cell.
   html = html.replace(/<\/main>\r?\n/, match => match + DEMO_DIALOG(m));
-  return html.replace(re, (_, card) => `<div class="card-slot wide">
+  return html.replace(re, (_, card) => `<div class="card-slot">
 ${card}      <button type="button" class="btn light demo-open" id="demoOpen" aria-haspopup="dialog"><span>Watch the demo</span><span class="arr" aria-hidden="true">▶</span></button>
       </div>
 `);
@@ -151,6 +153,23 @@ export function renderResume(){
 </main>`;
 }
 
+// Home-page experience list, rendered from the same content/resume.json as the résumé (its Experience and
+// Leadership & Volunteering sections), so the two can't drift apart. A row with résumé bullets is a <details>
+// that opens to show them; a row without bullets is a plain row with no arrow.
+export function renderExperience(){
+  const r = read(RESUME);
+  const entries = r.sections.filter(s => ['Experience', 'Leadership & Volunteering'].includes(s.title)).flatMap(s => s.entries);
+  // "Co-op" never splits across lines.
+  const t = s => esc(s).replace(/\b(Co-op|co-op)\b/g, '<span class="nw">$1</span>');
+  const cells = e => `<b>${t(e.role)}</b><span class="org">${t(e.org)}</span><span class="yr">${esc(e.dates)}</span>`;
+  const row = e => e.lines?.length
+    ? `<details class="row"><summary>${cells(e)}<span class="ar" aria-hidden="true">→</span></summary><ul class="row-more">${e.lines.map(l => `<li>${esc(l)}</li>`).join('')}</ul></details>`
+    : `<div class="row"><div class="row-sum">${cells(e)}<span class="ar" aria-hidden="true"></span></div></div>`;
+  return `<div class="ledger">
+      ${entries.map(row).join('\n      ')}
+    </div>`;
+}
+
 // <!-- @e:class --> becomes the serif E as inline SVG; <!-- @e-outline:class --> the outlined version.
 const renderE = html => html.replace(/<!-- @e(-outline)?:([\w-]+) -->/g, (_, o, cls) => eSvg(cls, {outline: !!o}));
 
@@ -159,7 +178,7 @@ export default function fieldSection(){
     name: 'field-section',
     transformIndexHtml: {
       order: 'pre',
-      handler: html => renderE(html.includes('<!-- @resume -->') ? html.replace('<!-- @resume -->', renderResume()) : renderDripDemo(html)).replace('<!-- @field -->', renderField()).replace('<!-- @portrait -->', renderPortrait()),
+      handler: html => renderE(html.includes('<!-- @resume -->') ? html.replace('<!-- @resume -->', renderResume()) : renderDripDemo(html)).replace('<!-- @field -->', renderField()).replace('<!-- @experience -->', renderExperience()).replace('<!-- @portrait -->', renderPortrait()),
     },
     configureServer(server){
       // Editing the content file or regenerating media reloads the dev page.

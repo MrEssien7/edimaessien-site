@@ -19,6 +19,7 @@ import {initGlobe} from './modules/globe.js';
 import {initSignature} from './modules/signature.js';
 import {initField} from './modules/field.js';
 import {initDemo} from './modules/demo.js';
+import {initCase} from './modules/case.js';
 
 const lenis = initSmoothScroll();
 initNav();
@@ -41,4 +42,5 @@ whenNear(document.getElementById('globe'), initGlobe);
 initSignature();
 initField(lenis);
 initDemo(lenis);
+initCase();
 initChoreography();

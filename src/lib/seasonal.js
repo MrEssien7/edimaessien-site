@@ -1,4 +1,4 @@
-// Seasonal falling particles (falling-leaves) over the whole page: leaves in fall, snow in winter, blossoms in spring.
+// Seasonal falling particles (falling-leaves) over the home and 404 pages (not the résumé): leaves in fall, snow in winter, blossoms in spring.
 // The library is a separate chunk loaded after the page's load event, like GoatCounter, so it never touches first paint;
 // the animation itself starts a few seconds later, once the page is idle (see the end of run()).
 // The footer toggle (#seasonToggle, home page only) remembers the choice for every page; it is hidden when the
@@ -8,7 +8,7 @@ import '../styles/seasonal.css';
 // Tune here. Colors starting with -- are read from the palette tokens in tokens.css. Anything left out
 // (speed, wind, sway, rotationSpeed) uses the library's defaults.
 export const SEASONS = {
-  fall:   {enabled: true,  label: 'Leaves',   shapes: ['maple', 'oak'], colors: ['--ecru', '--amber'], count: 12, size: [12, 22], opacity: 0.85},
+  fall:   {enabled: true,  label: 'Leaves',   shapes: ['maple', 'oak'], colors: ['--ecru', '--amber'], count: 8, size: [12, 22], opacity: 0.85},
   winter: {enabled: true,  label: 'Snow',     shapes: ['oval'], colors: ['#FFFFFF'], size: [3, 6], speed: [0.4, 0.9], rotationSpeed: [-0.2, 0.2], count: 25, opacity: 0.8},
   spring: {enabled: true,  label: 'Blossoms', shapes: ['oval'], colors: ['--flag', '--flag-deep'], size: [8, 14], count: 12},
   summer: {enabled: false, label: 'Summer',   shapes: ['oval'], colors: ['--sea'], size: [6, 10], count: 10},

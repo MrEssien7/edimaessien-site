@@ -38,7 +38,7 @@ a{color:inherit}
 .r-foot{margin-top:16px;padding-top:8px;border-top:1px solid var(--line);font-family:var(--f-mono);font-size:7pt;color:var(--ink-2);display:flex;justify-content:space-between}
 
 /* On screen, contact links get at least a 24px-tall tap target (print keeps the compact line). */
-@media screen{.r-contact a{display:inline-block;padding:6px 0}}
+@media screen{.r-contact a{display:inline-block;padding:6px 0}.r-contact li:not(:has(a)){padding:6px 0}}
 
 /* Phones: the sheet becomes the page */
 @media screen and (max-width:8.9in){

@@ -4,19 +4,27 @@ import {$, reduce, visible} from '../../lib/env.js';
 export function initSystems(){
   const cv = $('#sysCv'), x = cv.getContext('2d');
   const N = ["Raiser's Edge NXT", 'Salesforce', 'Constant Contact', 'Constant Contact', 'Qualtrics', 'PoliTraQ', 'Agility PR'];
-  let w, h, dpr, run = false;
-  function size(){ dpr = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w * dpr; cv.height = h * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0); run = run || reduce; }
-  size(); addEventListener('resize', size);
+  // The diagram fills the space between the corner labels and the caption (.meta), so no node sits under the text.
+  // Sizes come from a ResizeObserver (first layout, resize, web fonts arriving), never per frame, so drawing
+  // never forces a layout.
+  const meta = cv.closest('.card')?.querySelector('.meta');
+  let w, h, dpr, metaH = 140, run = false;
+  function size(){ dpr = Math.min(2, devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; metaH = meta?.offsetHeight || 140; cv.width = w * dpr; cv.height = h * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0); run = run || reduce; }
+  const ro = new ResizeObserver(size); ro.observe(cv); if (meta) ro.observe(meta);
   visible(cv, v => run = v);
   function nodes(t){
-    const cx = w / 2, cy = h * .44, rx = Math.min(w * .36, 260), ry = Math.min(h * .27, 170);
+    const top = 56, bottom = h - metaH + 20, cy = (top + bottom) / 2;
+    const cx = w / 2, rx = Math.min(w * .36, 260), ry = Math.max(40, Math.min((bottom - top) / 2 - 18, 170));
     return N.map((n, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / N.length + t * .05; return {n, x: cx + Math.cos(a) * rx, y: cy + Math.sin(a) * ry}; }).concat([{n: 'One constituent', x: cx, y: cy, hub: true}]);
   }
   const t0 = performance.now();
+  let frame = 0;
   (function tick(now){
     requestAnimationFrame(tick);
     // Paused off screen; with reduced motion, one still frame per view or resize.
-    if (!run) return;
+    if (!run || !w) return;
+    // A slow drift doesn't need 60 fps: drawing every other frame halves its main-thread cost.
+    if (!reduce && (frame++ & 1)) return;
     if (reduce) run = false;
     const t = reduce ? 0 : (now - t0) / 1000;
     x.clearRect(0, 0, w, h);

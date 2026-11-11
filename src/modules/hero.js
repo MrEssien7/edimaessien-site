@@ -25,7 +25,8 @@ export async function initHero(context){
   function layout(){
     fit(r, cam, cv);
     const mobile = cv.clientWidth < 760;
-    grp.position.set(mobile ? .6 : 4.1, mobile ? 2.5 : .2, 0);
+    // On phones the E sits in the space between the nav and the headline, clear of the floating nav bar.
+    grp.position.set(mobile ? .6 : 4.1, mobile ? 2.0 : .2, 0);
     const k = mobile ? .5 : .92; grp.scale.set(k, k, k);
   }
   layout(); addEventListener('resize', layout);
@@ -47,7 +48,7 @@ export async function initHero(context){
     if (!reduce){
       heroE.rotation.y += ((-.45 + tgt.x * .9 + Math.sin(t * .5) * .18 + scrollSpin.v * 2.2) - heroE.rotation.y) * .06;
       heroE.rotation.x += ((.12 + tgt.y * .5 + scrollSpin.v * .4) - heroE.rotation.x) * .06;
-      grp.position.y += ((cv.clientWidth < 760 ? 2.6 : .2) + Math.sin(t * .9) * .12 - grp.position.y) * .05;
+      grp.position.y += ((cv.clientWidth < 760 ? 2.1 : .2) + Math.sin(t * .9) * .12 - grp.position.y) * .05;
     } else { heroE.rotation.set(.12, -.45, 0); }
     r.render(sc, cam);
   })(performance.now());
